@@ -52,25 +52,49 @@ class EmployeeController extends Controller
     {
         $this->validate($request,[
 			'name' => 'required|max:255',
-			'email' => 'required|email',
-			'street' => 'required',
-			'town' => 'required',
-			'city' => 'required',
-			'country' => 'required',
+			'dob' => 'required',
+			'idno' => 'required',
+			'mobile' => 'required',
+
+			'kra' => 'required',
+			'nhif' => 'required',
+			'nssf' => 'required',
+			'education' => 'required',
+			'role_id' => 'required',
+			'hiredate' => 'required',
+			'bkacc' => 'required',
+			'bkname' => 'required',
+			'bkbranch' => 'required',
+			'nok' => 'required',
+			'nokr' => 'required',
+			'nokmobile' => 'required',
 			'full_time' => 'required|bool',
-			'role_id' => 'required'
-		]);
 		
+		]);
+		  //create new employee
 		$employee = Employee::create([
 			'name' => $request->name,
-			'slug' =>str_slug($request->name),
+			'dob' =>$request->dob,
+			'idno' =>$request->idno,
+			'gender' =>$request->gender,
+			'mstatus' =>$request->mstatus,
+			'idno' =>$request->idno,
+			'mobile' =>$request->mobile,
 			'email' => $request->email,
-			'street' => $request->street,
-			'town' => $request->town,
-			'city' => $request->city,
-			'country' => $request->country,
-			'full_time' => $request->full_time,
+			'krapin' => $request->krapin,
+			'nhif' => $request->nhif,
+			'nssf' => $request->nssf,
+			'education' => $request->education,
 			'role_id' => $request->role_id,	
+			'hiredate' => $request->hiredate,
+			'bkacc' => $request->bkacc,
+			'bkname' => $request->bkname,
+			'bkbranch' => $request->bkbranch,
+			'nok' => $request->next_of_kin,
+			'nokr' => $request->relation,
+			'nokmobile' => $request->nokmobile,
+			'full_time' => $request->full_time
+			
 		]);
 		
 		$payroll = new Payroll;
