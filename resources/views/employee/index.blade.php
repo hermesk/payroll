@@ -15,7 +15,7 @@
 	<table class= "table table-hover" id="filterTable">
 		<thead>					
 			<th>Name</th>
-			<th>Email</th>
+			<th>Mobile</th>
 			<th>Role</th>
 			<th>Edit</th>	
 			<th>Trash</th>
@@ -26,7 +26,7 @@
 				@foreach($employees as $employee)
 					<tr>								
 						<td><a href="{{ route('employees.show', ['id' => $employee->id]) }}">{{ $employee->name }}</a></td>
-						<td>{{ $employee->email }}</td>
+						<td>{{ $employee->mobile }}</td>
 						<td>{{ $employee->role->name }}</td>
 						<td>
 							<a href="{{ route('employees.edit', ['id' => $employee->id]) }}" class="btn btn-info">Edit</a>

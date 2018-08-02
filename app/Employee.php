@@ -11,8 +11,9 @@ class Employee extends Model
 	
 	protected $dates=['deleted_at'];
 	
-	protected $fillable=['name','slug','role_id','email','full_time',
-		'street','town','city','country'];
+	protected $fillable=['name','dob','gender','mstatus','idno','mobile','email','krapin',
+	'nhif','nssf','education','role_id','hiredate','bkacc','bkname','bkbranch','next_of_kin','relation',
+	'nokmobile','full_time'];
 	
 	public $with = ['role','payrolls'];
 	

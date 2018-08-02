@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 
@@ -14,41 +15,14 @@
 			<input type="text" name="name" class="form-control">		
 		</div>
 		
-		<div class="form-group col-md-3">
-			<label for="gender">Gender:</label>
-			<select name="gender" id="gender" class="form-control">
-				<option value="1">Male</option>
-				<option value="0">Female</option>					
-			</select>
-		</div>
-		<div class="form-group col-md-3">
-			<label for="email">D.O.B.: </label>
-			<input type="date" min="0" name="dob" class="form-control">		
-		</div>
-		
-		<div class="form-group col-md-3">
-			<label for="street">ID NO: </label>
-			<input type="number" min="0" name="idno" class="form-control">		
-		</div>
-		<div class="form-group col-md-3">
-			<label for="street">KRA PIN: </label>
-			<input type="text" name="kra" pattern="^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$"  class="form-control">		
-		</div>
-		<div class="form-group col-md-3">
-			<label for="street">NHIF: </label>
-			<input type="number" min="0" name="hnif" class="form-control">		
-		</div>
-		<div class="form-group col-md-3">
-			<label for="street">NSSF: </label>
-			<input type="number" min="0" name="nssf" class="form-control">		
-		</div>
-		<div class="form-group col-md-3">
-			<label for="street">Mobile: </label>
-			<input type="number" min="0" name="mobile" class="form-control">		
-		</div>
-		<div class="form-group col-md-3">
+		<div class="form-group col-md-6">
 			<label for="email">Email: </label>
 			<input type="email" name="email" class="form-control">		
+		</div>
+		
+		<div class="form-group col-md-12">
+			<label for="street">Street: </label>
+			<input type="text" name="street" class="form-control">		
 		</div>
 		
 		<div class="form-group col-md-6">
@@ -75,7 +49,7 @@
 			</select>
 		</div>
 		
-		<div class="form-group col-md-12">
+		<div class="form-group col-md-6">
 			<label for="full_time">Position:</label>
 			<select name="full_time" id="full_time" class="form-control">
 				<option value="1">Full-Time</option>

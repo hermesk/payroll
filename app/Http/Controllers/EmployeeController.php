@@ -36,8 +36,10 @@ class EmployeeController extends Controller
     {
         $roles=Role::all();
 		if($roles->count()==0){
-			Session::flash('Success', 'you must have at least 1 role created before attempting to create an employee');
-			return redirect()->back();
+			//Session::flash('Success', 'you must have at least 1 role created before attempting to create an employee');
+			//return redirect()->back();
+			return redirect()->back()->with('success','you must have at least 1 role created before attempting to create an employee');
+
 		}
         return view('employee.create')->with('roles',$roles);
     }
@@ -50,24 +52,26 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+      $this->validate($request,[
 			'name' => 'required|max:255',
 			'dob' => 'required',
-			'idno' => 'required',
-			'mobile' => 'required',
-
-			'kra' => 'required',
-			'nhif' => 'required',
-			'nssf' => 'required',
+			'idno' => 'required|min:7|unique:employees,idno',
+			'gender' => 'required',
+			'mstatus' => 'required',
+			'mobile' => 'required|numeric|min:10',
+			'email' => 'required|email|unique:employees,email',
+			'krapin' => 'required|unique:employees,krapin',
+			'nhif' => 'required|unique:employees,nhif',
+			'nssf' => 'required|unique:employees,nssf',
 			'education' => 'required',
 			'role_id' => 'required',
 			'hiredate' => 'required',
-			'bkacc' => 'required',
+			'bkacc' => 'required|unique:employees,bkacc',
 			'bkname' => 'required',
 			'bkbranch' => 'required',
 			'nok' => 'required',
 			'nokr' => 'required',
-			'nokmobile' => 'required',
+			'nokmobile' => 'required|min:10',
 			'full_time' => 'required|bool',
 		
 		]);
@@ -90,21 +94,19 @@ class EmployeeController extends Controller
 			'bkacc' => $request->bkacc,
 			'bkname' => $request->bkname,
 			'bkbranch' => $request->bkbranch,
-			'nok' => $request->next_of_kin,
-			'nokr' => $request->relation,
+			'next_of_kin' => $request->nok,
+			'relation' => $request->nokr,
 			'nokmobile' => $request->nokmobile,
-			'full_time' => $request->full_time
-			
+			'full_time' => $request->full_time			
 		]);
 		
 		$payroll = new Payroll;
 		$payroll->employee_id = $employee->id;
 		$payroll->save();
-		$employee->save();
-		
-		
-		$request->session()->flash('status', 'New Employee created');
-		return redirect()->route('employees.index');
+		$employee->save();	
+		//$request->session()->flash('status', 'New Employee created');
+		return redirect('/employees')->with('success','New Employee created');
+		//return redirect()->route('employees.index');
     }
 
     /**
@@ -177,8 +179,9 @@ class EmployeeController extends Controller
         $employee=Employee::findOrFail($id);
 		$employee->delete();
 		
-		Session::flash('success','Employee deleted');
-		return redirect()->route('employees.index');
+		//Session::flash('success','Employee deleted');
+		//return redirect()->route('employees.index');
+		return redirect('/employees')->with('success','Employee deleted');
     }
 	
 	public function bin(){

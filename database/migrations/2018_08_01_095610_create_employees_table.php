@@ -25,7 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->string('krapin');
             $table->integer('nhif');
             $table->integer('nssf');
-            $table->integer('education');
+            $table->string('education');
             $table->string('role_id');
             $table->date('hiredate');
             $table->string('bkacc');

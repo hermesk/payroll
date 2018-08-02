@@ -9,7 +9,7 @@ use App\Department;
 use Session;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home',['employees' => Employee::take(4)->get(),
+        return view('dashboard',['employees' => Employee::take(4)->get(),
 							'employeesCount' =>Employee::count(),
 							'payrolls'=>Payroll::take(4)->get(),
 							'roles' => Role::count(),

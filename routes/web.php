@@ -20,7 +20,7 @@
 Auth::routes();
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'DashboardController@index')->name('dashboard');
 
 
 Route::get('/employees/bin', 'EmployeeController@bin')->name('employees.bin');

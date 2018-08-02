@@ -18,6 +18,11 @@
 <body>
     <div id="app">
         @include('layouts.nav');
+		<!--messages!-->
+		<div class="container">
+                    @include('inc.messages')
+
+          </div> 
 		
 		<div class="container">
 			<div class="row">

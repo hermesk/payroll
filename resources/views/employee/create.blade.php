@@ -1,8 +1,12 @@
 @extends('layouts.app')
+
 @section('content')
-<div class="text-center "><h1>New Employee</h1></div>
+
+<div class="text-center "><h1>Add  New Employee</h1></div>
 {!! Form::open(['action' => 'EmployeeController@store','method'=>'POST','enctype'=>'multipart/form-data']) !!}
+{{ csrf_field() }}
 <div class="form-group col-md-4">
+
         {{Form::label('title', 'Name:')}}
         {{Form::text('name', '',['class' => 'form-control','PlaceHolder' => 'Full Name'])}}
     </div>
