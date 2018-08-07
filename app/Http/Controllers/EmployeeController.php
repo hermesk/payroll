@@ -72,7 +72,7 @@ class EmployeeController extends Controller
 			'nok' => 'required',
 			'nokr' => 'required',
 			'nokmobile' => 'required|min:10',
-			'full_time' => 'required|bool',
+			'full_time' => 'required|bool'
 		
 		]);
 		  //create new employee
@@ -144,28 +144,53 @@ class EmployeeController extends Controller
         $employee=Employee::findOrFail($id);
 		$this->validate($request,[
 			'name' => 'required|max:255',
-			'email' => 'required|email',
-			'street' => 'required',
-			'town' => 'required',
-			'city' => 'required',
-			'country' => 'required',
-			'full_time' => 'required|bool',
-			'role_id' => 'required'
+			'dob' => 'required',
+			'idno' => 'required|min:7|unique:employees,idno',
+			'gender' => 'required',
+			'mstatus' => 'required',
+			'mobile' => 'required|numeric|min:10',
+			'email' => 'required|email|unique:employees,email',
+			'krapin' => 'required|unique:employees,krapin',
+			'nhif' => 'required|unique:employees,nhif',
+			'nssf' => 'required|unique:employees,nssf',
+			'education' => 'required',
+			'role_id' => 'required',
+			'hiredate' => 'required',
+			'bkacc' => 'required|unique:employees,bkacc',
+			'bkname' => 'required',
+			'bkbranch' => 'required',
+			'nok' => 'required',
+			'nokr' => 'required',
+			'nokmobile' => 'required|min:10',
+			'full_time' => 'required|bool'
 		]);
 				
 		$employee->name = $request->name;
-		$employee->slug = str_slug($request->name);
+		$employee->dob = $request->dob;
+		$employee->idno = $request->idno;
+		$employee->gender = $request->gender;
+		$employee->mstatus = $request->mstatus;
+		$employee->mobile = $request->mobile;
 		$employee->email = $request->email;
-		$employee->street = $request->street;
-		$employee->town = $request->town;
-		$employee->city = $request->city;
-		$employee->country = $request->country;
+		$employee->krapin = $request->krapin;
+		$employee->nhif = $request->nhif;
+		$employee->nssf = $request->nssf;
+		$employeeducation = $request->education;
+		$employee->role_id  = $request->role_id;
+		$employee->hiredate = $request->hiredate;
+		$employee->bkacc  = $request->bkacc;
+		$employee->bkname  = $request->bkname;
+		$employee->bkbranch  = $request->bkbranch;
+		$employee->next_of_kin  = $request->nok;
+		$employee->relation  = $request->nokr;
+		$employee->nokmobile  = $request->nokmobile;
 		$employee->full_time = $request->full_time;
-		$employee->role_id  = $request->role_id;		
+				
 		$employee->save();
 		
-		$request->session()->flash('status', 'New Employee created');
-		return redirect()->route('employees.index');
+		//$request->session()->flash('success', 'Employee Record updated');
+		//return redirect()->route('employees.index');
+		return redirect('/employees')->with('success','Employee Record updated');
     }
 
     /**
